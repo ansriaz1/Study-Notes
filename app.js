@@ -1,83 +1,115 @@
 let notes = JSON.parse(localStorage.getItem("notes")) || []
 
-let current = null
+displayNotes()
 
-const list = document.getElementById("notesList")
-const editor = document.getElementById("editor")
-const title = document.getElementById("title")
 
-function save(){
+function addNote(){
 
-localStorage.setItem("notes", JSON.stringify(notes))
+let title = document.getElementById("noteTitle").value
+let text = document.getElementById("noteText").value
+
+if(title=="" || text=="") return
+
+let note = {
+
+title:title,
+text:text
 
 }
 
-function render(){
+notes.push(note)
 
-list.innerHTML=""
+localStorage.setItem("notes",JSON.stringify(notes))
 
-notes.forEach((n,i)=>{
+displayNotes()
 
-let div=document.createElement("div")
+document.getElementById("noteTitle").value=""
+document.getElementById("noteText").value=""
 
-div.className="noteItem"
+}
 
-div.innerText=n.title || "Untitled"
 
-div.onclick=()=>openNote(i)
 
-list.appendChild(div)
+function displayNotes(){
+
+let container=document.getElementById("notesContainer")
+
+container.innerHTML=""
+
+notes.forEach((note,index)=>{
+
+container.innerHTML+=`
+
+<div class="note">
+
+<h3>${note.title}</h3>
+
+<p>${note.text}</p>
+
+<button class="deleteBtn" onclick="deleteNote(${index})">Delete</button>
+
+</div>
+
+`
 
 })
 
 }
 
-function createNote(){
 
-notes.push({title:"New Note",content:""})
 
-save()
+function deleteNote(index){
 
-render()
+notes.splice(index,1)
 
-}
+localStorage.setItem("notes",JSON.stringify(notes))
 
-function openNote(i){
-
-current=i
-
-title.value=notes[i].title
-
-editor.innerHTML=notes[i].content
+displayNotes()
 
 }
 
-title.oninput=()=>{
 
-if(current==null)return
 
-notes[current].title=title.value
+document.getElementById("menuBtn").onclick=function(){
 
-save()
+let menu=document.getElementById("menu")
 
-render()
+if(menu.style.display=="block")
 
-}
+menu.style.display="none"
 
-editor.oninput=()=>{
+else
 
-if(current==null)return
-
-notes[current].content=editor.innerHTML
-
-save()
+menu.style.display="block"
 
 }
 
-function format(cmd){
 
-document.execCommand(cmd)
 
-}
+document.getElementById("searchBox").addEventListener("input",function(){
 
-render()
+let search=this.value.toLowerCase()
+
+let filtered=notes.filter(n=>n.title.toLowerCase().includes(search)||n.text.toLowerCase().includes(search))
+
+let container=document.getElementById("notesContainer")
+
+container.innerHTML=""
+
+filtered.forEach((note,index)=>{
+
+container.innerHTML+=`
+
+<div class="note">
+
+<h3>${note.title}</h3>
+
+<p>${note.text}</p>
+
+</div>
+
+`
+
+})
+
+})
