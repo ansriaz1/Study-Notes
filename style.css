@@ -2,160 +2,119 @@ body{
 
 margin:0;
 font-family:Arial;
-height:100vh;
-
-background:linear-gradient(135deg,#667eea,#764ba2);
-
+background:linear-gradient(120deg,#89f7fe,#66a6ff);
 }
+
+
+header{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:10px;
+background:#2c3e50;
+color:white;
+}
+
+
+#menuBtn{
+
+font-size:22px;
+background:none;
+border:none;
+color:white;
+}
+
+
+#searchBox{
+
+padding:5px;
+border-radius:5px;
+border:none;
+}
+
+
+#menu{
+
+display:none;
+background:#34495e;
+padding:10px;
+}
+
+
+#menu a{
+
+display:block;
+color:white;
+padding:8px;
+text-decoration:none;
+}
+
 
 .container{
 
-display:flex;
-height:100vh;
-
-}
-
-/* SIDEBAR */
-
-.sidebar{
-
-width:280px;
-
-background:linear-gradient(180deg,#ff7e5f,#feb47b);
-
-padding:20px;
-
-color:white;
-
-display:flex;
-flex-direction:column;
-
-overflow:auto;
-
-}
-
-.sidebar h1{
-
-margin-bottom:20px;
-
-}
-
-.newNote{
-
-padding:12px;
-
-border:none;
-
-border-radius:10px;
-
+padding:15px;
 background:white;
-
-color:#ff7e5f;
-
-font-weight:bold;
-
-cursor:pointer;
-
-margin-bottom:15px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
 
 }
 
-.noteItem{
 
+input,textarea{
+
+width:100%;
+margin-top:10px;
 padding:10px;
-
-margin-bottom:8px;
-
-background:rgba(255,255,255,0.3);
-
-border-radius:8px;
-
-cursor:pointer;
+border-radius:6px;
+border:1px solid #ccc;
 
 }
 
 
-/* MAIN AREA */
+button{
 
-.main{
-
-flex:1;
-
-display:flex;
-
-flex-direction:column;
-
-background:#f6f7fb;
+margin-top:10px;
+padding:10px;
+background:#27ae60;
+border:none;
+color:white;
+border-radius:6px;
 
 }
 
-/* TITLE */
 
-#title{
+#notesContainer{
 
 padding:15px;
 
-font-size:22px;
-
-border:none;
-
-outline:none;
-
-background:white;
-
-border-bottom:2px solid #eee;
-
 }
 
-/* TOOLBAR */
 
-.toolbar{
+.note{
 
+background:white;
+margin-bottom:10px;
 padding:10px;
-
-background:#e8e9ff;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
 
 }
 
-.toolbar button{
 
-padding:8px 12px;
+.deleteBtn{
 
-margin-right:5px;
+background:red;
+margin-top:5px;
 
-border:none;
+}
 
-border-radius:6px;
 
-background:#667eea;
+footer{
 
+text-align:center;
+padding:15px;
 color:white;
-
-cursor:pointer;
-
-}
-
-
-/* EDITOR PAGE */
-
-#editor{
-
-flex:1;
-
-padding:40px;
-
-background:white;
-
-margin:20px;
-
-border-radius:12px;
-
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-
-font-size:18px;
-
-line-height:1.6;
-
-overflow:auto;
 
   }
