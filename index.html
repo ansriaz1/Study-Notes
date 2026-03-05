@@ -1,60 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ans Notes</title>
+<title>Study Notes</title>
 
 <link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
 
 </head>
 
 <body>
 
+<header>
+
+<button id="menuBtn">☰</button>
+
+<h1>Study Notes</h1>
+
+<input type="text" id="searchBox" placeholder="Search notes...">
+
+</header>
+
+
+<nav id="menu">
+
+<a href="#">Home</a>
+<a href="#">My Notes</a>
+<a href="#">About</a>
+
+</nav>
+
+
 <div class="container">
 
-<div class="sidebar">
+<h2>Create a Note</h2>
 
-<h1>Ans Notes</h1>
+<input id="noteTitle" placeholder="Note Title">
 
-<button class="newNote" onclick="createNote()">+ New Note</button>
+<textarea id="noteText" placeholder="Write your note..."></textarea>
 
-<div id="notesList"></div>
-
-</div>
-
-
-<div class="main">
-
-<input id="title" placeholder="Note title">
-
-<div class="toolbar">
-
-<button onclick="format('bold')"><b>B</b></button>
-<button onclick="format('italic')"><i>I</i></button>
-<button onclick="format('underline')"><u>U</u></button>
+<button onclick="addNote()">Save Note</button>
 
 </div>
 
-<div id="editor" contenteditable="true"></div>
 
-</div>
+<div id="notesContainer"></div>
 
-</div>
+<footer>
+
+Created by Ans Riaz ✨
+
+</footer>
 
 
 <script src="app.js"></script>
-
-<script>
-
-if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('sw.js')
-}
-
-</script>
 
 </body>
 </html>
