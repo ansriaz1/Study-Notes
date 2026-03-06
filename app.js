@@ -1,115 +1,85 @@
-let notes = JSON.parse(localStorage.getItem("notes")) || []
+const notesContainer = document.getElementById("notesContainer")
 
-displayNotes()
+const addBtn = document.getElementById("addBtn")
+
+const menuBtn = document.getElementById("menuBtn")
+
+const sidebar = document.getElementById("sidebar")
 
 
-function addNote(){
+menuBtn.onclick = () => {
 
-let title = document.getElementById("noteTitle").value
-let text = document.getElementById("noteText").value
-
-if(title=="" || text=="") return
-
-let note = {
-
-title:title,
-text:text
+sidebar.classList.toggle("show")
 
 }
 
-notes.push(note)
+
+function saveNotes(){
+
+const notes = []
+
+document.querySelectorAll(".note textarea").forEach(n=>{
+
+notes.push(n.value)
+
+})
 
 localStorage.setItem("notes",JSON.stringify(notes))
 
-displayNotes()
-
-document.getElementById("noteTitle").value=""
-document.getElementById("noteText").value=""
-
 }
 
 
+function createNote(text=""){
 
-function displayNotes(){
+const note = document.createElement("div")
 
-let container=document.getElementById("notesContainer")
+note.className="note"
 
-container.innerHTML=""
+note.innerHTML=`
 
-notes.forEach((note,index)=>{
+<button class="deleteBtn">x</button>
 
-container.innerHTML+=`
-
-<div class="note">
-
-<h3>${note.title}</h3>
-
-<p>${note.text}</p>
-
-<button class="deleteBtn" onclick="deleteNote(${index})">Delete</button>
-
-</div>
+<textarea>${text}</textarea>
 
 `
 
-})
+note.querySelector(".deleteBtn").onclick=()=>{
+
+note.remove()
+
+saveNotes()
+
+}
+
+note.querySelector("textarea").onkeyup=saveNotes
+
+notesContainer.appendChild(note)
 
 }
 
 
+addBtn.onclick=()=>{
 
-function deleteNote(index){
-
-notes.splice(index,1)
-
-localStorage.setItem("notes",JSON.stringify(notes))
-
-displayNotes()
+createNote()
 
 }
 
 
+function loadNotes(){
 
-document.getElementById("menuBtn").onclick=function(){
+const data = JSON.parse(localStorage.getItem("notes") || "[]")
 
-let menu=document.getElementById("menu")
-
-if(menu.style.display=="block")
-
-menu.style.display="none"
-
-else
-
-menu.style.display="block"
+data.forEach(n=>createNote(n))
 
 }
 
+loadNotes()
 
 
-document.getElementById("searchBox").addEventListener("input",function(){
+function deleteAll(){
 
-let search=this.value.toLowerCase()
+localStorage.removeItem("notes")
 
-let filtered=notes.filter(n=>n.title.toLowerCase().includes(search)||n.text.toLowerCase().includes(search))
+notesContainer.innerHTML=""
 
-let container=document.getElementById("notesContainer")
-
-container.innerHTML=""
-
-filtered.forEach((note,index)=>{
-
-container.innerHTML+=`
-
-<div class="note">
-
-<h3>${note.title}</h3>
-
-<p>${note.text}</p>
-
-</div>
-
-`
-
-})
-
-})
+  }
