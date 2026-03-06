@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Study Notes</title>
 
 <link rel="stylesheet" href="style.css">
+
 <link rel="manifest" href="manifest.json">
+
 </head>
 
 <body>
@@ -19,49 +19,34 @@
 
 <h1>Study Notes</h1>
 
-<input type="text" id="searchBox" placeholder="Search notes...">
+<button id="addBtn">＋</button>
 
 </header>
 
 
-<nav id="menu">
+<div id="sidebar">
 
-<a href="#">Home</a>
-<a href="#">My Notes</a>
-<a href="#">About</a>
+<h2>Menu</h2>
 
-</nav>
+<button onclick="deleteAll()">Delete All Notes</button>
 
-
-<div class="container">
-
-<h2>Create a Note</h2>
-
-<input id="noteTitle" placeholder="Note Title">
-
-<textarea id="noteText" placeholder="Write your note..."></textarea>
-
-<button onclick="addNote()">Save Note</button>
+<p class="credit">Created by Ans Riaz</p>
 
 </div>
 
 
-<div id="notesContainer"></div>
-
-<footer>
-
-Created by Ans Riaz ✨
-
-</footer>
+<main id="notesContainer"></main>
 
 
 <script src="app.js"></script>
+
 <script>
+
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-  .then(() => console.log("SW registered"))
-  .catch((err) => console.log("SW failed", err));
+navigator.serviceWorker.register('sw.js')
 }
+
 </script>
+
 </body>
 </html>
